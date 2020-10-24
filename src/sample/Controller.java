@@ -176,7 +176,7 @@ public class Controller {
     }
 
     public void InviaSceltaPredizione(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
-        out.writeObject(3);
+        //out.writeObject(3);
         out.writeObject(Integer.parseInt(inserimento.getText()));
         answer=in.readObject().toString();
         if(answer.equals("QUERY")){
