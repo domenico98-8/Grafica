@@ -196,6 +196,5 @@ public class Controller {
             answer=in.readObject().toString();
             scelte.setText(answer);
 
-
     }
 }
