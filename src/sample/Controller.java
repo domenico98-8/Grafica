@@ -3,6 +3,7 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
@@ -68,13 +69,14 @@ public class Controller {
     @FXML
     Label erroreScelta;
 
-    String localhost="localhost";
-    String PORT="8080";
+    private final static String localhost="localhost";
+    private final static String PORT="8080";
     Socket socket=null;
     ObjectOutputStream out=null;
     ObjectInputStream in=null;
     String answer="";
     boolean ripeti=true;
+
     public void ConnessioneAlServer(ActionEvent actionEvent) throws IOException {
         if(localhost.compareTo(TextBoxHost.getText())==0 && PORT.compareTo(TextBoxPort.getText())==0){
             InetAddress addr;
@@ -87,6 +89,8 @@ public class Controller {
 
             try {
                 erroreServer.setVisible(true);
+                erroreporta.setVisible(false);
+                errorehost.setVisible(false);
                 socket = new Socket(addr, Integer.valueOf(8080).intValue());
                 System.out.println(socket);
                 out = new ObjectOutputStream(socket.getOutputStream());
@@ -217,6 +221,7 @@ public class Controller {
             }
             inserimento.clear();
             }catch (EOFException|NumberFormatException e){
+                erroreScelta.setText("Fuori Range! Ripeti la predizione");
                 erroreScelta.setVisible(true);
             }
     }
@@ -236,9 +241,27 @@ public class Controller {
     }
 
     public void NonRipetere(ActionEvent actionEvent) throws IOException {
-        scelte.setText("BYE BYE!");
-        State.setFill(Paint.valueOf("RED"));
-        StateText.setText("Sconnesso");
+        Acquisition.setVisible(true);
+        AlberoDiRegressione.setVisible(false);
+        out.writeObject(4);
+        inviaScelta.setDisable(false);
+        inserimento.setDisable(false);
+        MessaggioRipeti.setVisible(false);
+        BottoneSi.setVisible(false);
+        BottoneNo.setVisible(false);
+        valorepredetto.clear();
+
     }
 
+    public void SoloNumeri(KeyEvent keyEvent) {
+       String input=inserimento.getText();
+       if(input.matches("[A-Z*]") || input.matches("[a-z*]")){
+           erroreScelta.setText("Impossibile Inserire Lettere!");
+          erroreScelta.setVisible(true);
+           inserimento.clear();
+       }else{
+           erroreScelta.setVisible(false);
+       }
+
+    }
 }
