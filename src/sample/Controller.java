@@ -17,64 +17,94 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+/**
+ * Classe che include gli elementi grafici del client
+ */
 public class Controller {
+    /**
+     * Indica lo stato della connessione(Connesso/Sconnesso) con il server
+     */
     @FXML
-    Text StateText;
+    private Text StateText;
+    /**
+     * Indica lo stato della connessione(Rosso: Sconnesso/Verde: Connesso)
+     */
     @FXML
-    Circle State=new Circle(1000);
+    private Circle State=new Circle(1000);
+    /**
+     * TextBox che prende in input il nome della Porta
+     */
     @FXML
-    javafx.scene.control.TextField TextBoxPort=new TextField();
+    private  javafx.scene.control.TextField TextBoxPort=new TextField();
+    /**
+     * TextBox che prende in input il nome dell'host
+     */
     @FXML
-    javafx.scene.control.TextField TextBoxHost;
+    private javafx.scene.control.TextField TextBoxHost;
+    /**
+     * RadioButton che acquisisce da Archivio
+     */
     @FXML
-    RadioButton RadioArchivio;
+    private RadioButton RadioArchivio;
+    /**
+     * RadioButton che acquisisce da Data
+     */
     @FXML
-    RadioButton RadioData;
+    private RadioButton RadioData;
+    /**
+     * Label che riporta il fallimento con la connessione con il serve dovuto ad una porta errata
+     */
     @FXML
-    Label erroreporta;
+    private Label erroreporta;
+    /**
+     * Label che riporta il fallimento con la connessione con il server dovuto ad un host errato
+     */
     @FXML
-    Label errorehost;
+    private Label errorehost;
+    /**
+     * Finestra di accesso al server
+     */
     @FXML
-    Pane Accesso;
+    private Pane Accesso;
     @FXML
-    Pane Acquisition;
+    private Pane Acquisition;
     @FXML
-    Pane SceltaFile;
+    private Pane SceltaFile;
     @FXML
-    Text TextDataFile;
+    private Text TextDataFile;
     @FXML
-    TextField TextBoxNomeFile;
+    private TextField TextBoxNomeFile;
     @FXML
-    Pane AlberoDiRegressione;
+    private Pane AlberoDiRegressione;
     @FXML
-    Label erroreNome;
+    private Label erroreNome;
     @FXML
-    TextArea info;
+    private TextArea info;
     @FXML
-    TextField inserimento;
+    private TextField inserimento;
     @FXML
-    TextArea scelte;
+    private TextArea scelte;
     @FXML
-    TextArea valorepredetto;
+    private TextArea valorepredetto;
     @FXML
-    Button inviaScelta;
+    private Button inviaScelta;
     @FXML
-    Label MessaggioRipeti;
+    private Label MessaggioRipeti;
     @FXML
-    Button BottoneNo;
+    private Button BottoneNo;
     @FXML
-    Button BottoneSi;
+ 	 private Button BottoneSi;
     @FXML
-    Label erroreServer;
+    private Label erroreServer;
     @FXML
-    Label erroreScelta;
+    private Label erroreScelta;
 
     private final static String localhost="localhost";
     private final static String PORT="8080";
-    Socket socket=null;
-    ObjectOutputStream out=null;
-    ObjectInputStream in=null;
-    String answer="";
+    private Socket socket=null;
+    private ObjectOutputStream out=null;
+    private ObjectInputStream in=null;
+    private String answer="";
     boolean ripeti=true;
 
     public void ConnessioneAlServer(ActionEvent actionEvent) throws IOException {
@@ -86,7 +116,6 @@ public class Controller {
                 System.out.println(e.toString());
                 return;
             }
-
             try {
                 erroreServer.setVisible(true);
                 erroreporta.setVisible(false);
@@ -108,7 +137,6 @@ public class Controller {
                     erroreServer.setVisible(false);
                 }
             }
-
 
         }else{
             if(localhost.compareTo(TextBoxHost.getText())!=0) {
