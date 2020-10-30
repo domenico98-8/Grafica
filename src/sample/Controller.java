@@ -66,6 +66,9 @@ public class Controller {
      */
     @FXML
     private Pane Accesso;
+    /**
+     * finestra di acquisizione di data o archivio
+     */
     @FXML
     private Pane Acquisition;
     /**
