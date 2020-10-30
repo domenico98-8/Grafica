@@ -68,6 +68,9 @@ public class Controller {
     private Pane Accesso;
     @FXML
     private Pane Acquisition;
+    /**
+     * Finestra di acquisizione del nome del file
+     */
     @FXML
     private Pane SceltaFile;
     @FXML
