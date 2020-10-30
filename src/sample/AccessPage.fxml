@@ -20,7 +20,7 @@
                   <Font size="26.0" />
                </font>
             </Text>
-            <RadioButton fx:id="RadioArchivio" layoutX="154.0" layoutY="117.0" mnemonicParsing="false" onAction="#ConnettiEstraiArchivio" text="Archivio">
+            <RadioButton fx:id="RadioArchivio" layoutX="154.0" layoutY="117.0" mnemonicParsing="false" onAction="#EstraiArchivio" text="Archivio">
                <font>
                   <Font size="14.0" />
                </font>
